@@ -2,6 +2,12 @@
 Changelog for package cob_hand_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.2 (2017-07-18)
+------------------
+* properly handle re-init after restart
+  tested on cob4-5
+* Contributors: Mathias Lüdtke
+
 0.6.1 (2016-10-10)
 ------------------
 * fix install tags

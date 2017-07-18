@@ -41,6 +41,7 @@ ros::Timer g_command_timer;
 ros::Timer g_deadline_timer;
 double g_stopped_velocity;
 double g_stopped_current;
+bool g_initialized;
 bool g_motion_stopped;
 bool g_control_stopped;
 bool g_motors_moved;
@@ -104,6 +105,13 @@ bool initCallback(std_srvs::Trigger::Request  &req, std_srvs::Trigger::Response 
         }else{
             res.message = "init_finger service does not exist";
         }
+        lock.lock();
+        g_initialized = res.success;
+    }else if(!g_initialized){
+        g_as->start();
+        res.success = true;
+        res.message = "finger already initialized, restarting the controller";
+        g_initialized = true;
     }else{
         res.success = true;
         res.message = "already initialized";

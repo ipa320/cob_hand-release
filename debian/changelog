@@ -1,0 +1,14 @@
+ros-kinetic-cob-hand (0.6.2-0jessie) jessie; urgency=high
+
+
+
+ -- Florian Weisshardt <fmw@ipa.fhg.de>  Mon, 17 Jul 2017 22:00:00 -0000
+
+ros-kinetic-cob-hand (0.6.1-0jessie) jessie; urgency=high
+
+  * add meta package
+  * Contributors: Florian Weisshardt
+
+ -- Florian Weisshardt <fmw@ipa.fhg.de>  Sun, 09 Oct 2016 22:00:00 -0000
+
+

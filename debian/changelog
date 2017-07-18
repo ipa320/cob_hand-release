@@ -1,8 +1,0 @@
-ros-indigo-cob-hand (0.6.1-0trusty) trusty; urgency=high
-
-  * add meta package
-  * Contributors: Florian Weisshardt
-
- -- Florian Weisshardt <fmw@ipa.fhg.de>  Sun, 09 Oct 2016 22:00:00 -0000
-
-

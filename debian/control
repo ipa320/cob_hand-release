@@ -1,0 +1,12 @@
+Source: ros-kinetic-cob-hand-bridge
+Section: misc
+Priority: extra
+Maintainer: Florian Weisshardt <fmw@ipa.fhg.de>
+Build-Depends: debhelper (>= 9.0.0), ros-kinetic-actionlib, ros-kinetic-angles, ros-kinetic-catkin, ros-kinetic-control-msgs, ros-kinetic-diagnostic-updater, ros-kinetic-message-generation, ros-kinetic-sensor-msgs, ros-kinetic-std-srvs
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-cob-hand-bridge
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kinetic-actionlib, ros-kinetic-angles, ros-kinetic-control-msgs, ros-kinetic-diagnostic-updater, ros-kinetic-message-runtime, ros-kinetic-rosserial-python, ros-kinetic-sensor-msgs, ros-kinetic-std-msgs, ros-kinetic-std-srvs
+Description: The cob_hand_bridge package

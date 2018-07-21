@@ -2,6 +2,20 @@
 Changelog for package cob_hand_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.4 (2018-07-21)
+------------------
+* update maintainer
+* Merge pull request `#22 <https://github.com/ipa320/cob_hand/issues/22>`_ from ipa-bnm/fix/cob_hand_init
+  Reset error in init
+* reset error on init
+* readded local launch file
+* Merge pull request `#21 <https://github.com/ipa320/cob_hand/issues/21>`_ from ipa-bnm/feature/direct_sdh_connection
+  added ros node for direct sdax communication
+* mojin robotics copyright
+* remove launch file
+* added ros node for direct sdax communication
+* Contributors: Benjamin Maidel, Felix Messmer, Florian Weisshardt, fmessmer, ipa-fmw
+
 0.6.3 (2018-01-07)
 ------------------
 * Merge pull request `#19 <https://github.com/ipa320/cob_hand/issues/19>`_ from ipa320/indigo_release_candidate

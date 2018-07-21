@@ -1,3 +1,28 @@
+## cob_hand (indigo) - 0.6.4-0
+
+The packages in the `cob_hand` repository were released into the `indigo` distro by running `/usr/bin/bloom-release cob_hand --track indigo --rosdistro indigo` on `Sat, 21 Jul 2018 14:53:30 -0000`
+
+These packages were released:
+- `cob_hand`
+- `cob_hand_bridge`
+
+Version of package(s) in repository `cob_hand`:
+
+- upstream repository: https://github.com/ipa320/cob_hand.git
+- release repository: https://github.com/ipa320/cob_hand-release.git
+- rosdistro version: `0.6.3-0`
+- old version: `0.6.3-0`
+- new version: `0.6.4-0`
+
+Versions of tools used:
+
+- bloom version: `0.6.6`
+- catkin_pkg version: `0.4.6`
+- rosdep version: `0.12.2`
+- rosdistro version: `0.6.8`
+- vcstools version: `0.1.40`
+
+
 ## cob_hand (kinetic) - 0.6.3-0
 
 The packages in the `cob_hand` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release cob_hand --track kinetic --rosdistro kinetic` on `Sun, 07 Jan 2018 12:18:21 -0000`

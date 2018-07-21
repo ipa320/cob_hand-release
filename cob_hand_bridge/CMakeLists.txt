@@ -14,7 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_srvs
 )
 
-find_package(Boost REQUIRED COMPONENTS thread)
+find_package(Boost REQUIRED COMPONENTS chrono system thread)
 
 add_message_files(
   FILES
@@ -44,12 +44,24 @@ catkin_package(
 include_directories(
   ${Boost_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
+  client
+  client/src
+  client/pigpio
 )
 
 add_executable(${PROJECT_NAME}_node src/cob_hand_bridge_node.cpp)
 target_link_libraries(${PROJECT_NAME}_node ${Boost_LIBRARIES} ${catkin_LIBRARIES})
 add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
+add_library(cob_hand_pigpio STATIC client/pigpio/pigpio.c client/pigpio/command.c)
+target_compile_definitions(cob_hand_pigpio PRIVATE DISABLE_SER_CHECK_INITED)
+
+add_executable(cob_hand_node src/cob_hand_node.cpp)
+target_link_libraries(cob_hand_node cob_hand_pigpio ${Boost_LIBRARIES} ${catkin_LIBRARIES})
+add_dependencies(cob_hand_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+
+
 ### INSTALL ###
-install(TARGETS ${PROJECT_NAME}_node
+install(TARGETS ${PROJECT_NAME}_node cob_hand_node
         RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

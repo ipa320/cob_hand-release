@@ -1,5 +1,5 @@
 /*
-gcc -o x_pigpiod_if x_pigpiod_if.c -lpigpiod_if -lrt -lpthread
+gcc -Wall -pthread -o x_pigpiod_if x_pigpiod_if.c -lpigpiod_if
 ./x_pigpiod_if
 
 *** WARNING ************************************************
@@ -42,7 +42,7 @@ void CHECK(int t, int st, int got, int expect, int pc, char *desc)
 
 void t0()
 {
-   printf("Version.\n");
+   printf("\nTesting pigpiod C I/F 1\n");
 
    printf("pigpio version %d.\n", get_pigpio_version());
 
@@ -113,6 +113,7 @@ void t2()
    dc = get_PWM_dutycycle(GPIO);
    CHECK(2, 4, dc, 128, 0, "get PWM dutycycle");
 
+   time_sleep(0.2);
    oc = t2_count;
    time_sleep(2);
    f = t2_count - oc;
@@ -122,6 +123,7 @@ void t2()
    f = get_PWM_frequency(GPIO);
    CHECK(2, 6, f, 100, 0, "set/get PWM frequency");
 
+   time_sleep(0.2);
    oc = t2_count;
    time_sleep(2);
    f = t2_count - oc;
@@ -131,6 +133,7 @@ void t2()
    f = get_PWM_frequency(GPIO);
    CHECK(2, 8, f, 1000, 0, "set/get PWM frequency");
 
+   time_sleep(0.2);
    oc = t2_count;
    time_sleep(2);
    f = t2_count - oc;
@@ -250,14 +253,12 @@ void t4()
    set_PWM_range(GPIO, 100);
 
    h = notify_open();
-   e = notify_begin(h, (1<<GPIO));
-   CHECK(4, 1, e, 0, 0, "notify open/begin");
-
-   time_sleep(1);
 
    sprintf(p, "/dev/pigpio%d", h);
-
    f = open(p, O_RDONLY);
+
+   e = notify_begin(h, (1<<GPIO));
+   CHECK(4, 1, e, 0, 0, "notify open/begin");
 
    set_PWM_dutycycle(GPIO, 50);
    time_sleep(4);
@@ -357,7 +358,8 @@ To the lascivious pleasing of a lute.\n\
 
    wid = wave_create();
    e = wave_send_repeat(wid);
-   CHECK(5, 3, e, 9, 0, "wave tx repeat");
+   if (e < 14) CHECK(5, 3, e,  9, 0, "wave tx repeat");
+   else        CHECK(5, 3, e, 19, 0, "wave tx repeat");
 
    oc = t5_count;
    time_sleep(5.05);
@@ -376,7 +378,8 @@ To the lascivious pleasing of a lute.\n\
 
    wid = wave_create();
    e = wave_send_once(wid);
-   CHECK(5, 8, e, 6811, 0, "wave tx start");
+   if (e < 6964) CHECK(5, 8, e, 6811, 0, "wave tx start");
+   else          CHECK(5, 8, e, 7116, 0, "wave tx start");
 
    oc = t5_count;
    time_sleep(3);
@@ -416,10 +419,12 @@ To the lascivious pleasing of a lute.\n\
    CHECK(5, 18, c, 12000, 0, "wave get max pulses");
 
    c = wave_get_cbs();
-   CHECK(5, 19, c, 6810, 0, "wave get cbs");
+   if (c < 6963) CHECK(5, 19, c, 6810, 0, "wave get cbs");
+   else          CHECK(5, 19, c, 7115, 0, "wave get cbs");
 
    c = wave_get_high_cbs();
-   CHECK(5, 20, c, 6810, 0, "wave get high cbs");
+   if (c < 6963) CHECK(5, 20, c, 6810, 0, "wave get high cbs");
+   else          CHECK(5, 20, c, 7115, 0, "wave get high cbs");
 
    c = wave_get_max_cbs();
    CHECK(5, 21, c, 25016, 0, "wave get max cbs");
@@ -487,12 +492,12 @@ void t7()
    /* type of edge shouldn't matter for watchdogs */
    callback(GPIO, FALLING_EDGE, t7cbf);
 
-   set_watchdog(GPIO, 10); /* 10 ms, 100 per second */
+   set_watchdog(GPIO, 50); /* 50 ms, 20 per second */
    time_sleep(0.5);
    oc = t7_count;
    time_sleep(2);
    c = t7_count - oc;
-   CHECK(7, 1, c, 200, 1, "set watchdog on count");
+   CHECK(7, 1, c, 39, 5, "set watchdog on count");
 
    set_watchdog(GPIO, 0); /* 0 switches watchdog off */
    time_sleep(0.5);
@@ -820,7 +825,7 @@ int main(int argc, char *argv[])
 {
    int i, t, c, status;
 
-   char test[64];
+   char test[64]={0,};
 
    if (argc > 1)
    {

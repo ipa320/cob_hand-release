@@ -1,5 +1,5 @@
 /*
-gcc -o x_pigpio x_pigpio.c -lpigpio -lrt -lpthread
+gcc -Wall -pthread -o x_pigpio x_pigpio.c -lpigpio
 sudo ./x_pigpio
 
 *** WARNING ************************************************
@@ -45,7 +45,7 @@ void CHECK(int t, int st, int got, int expect, int pc, char *desc)
 
 void t0()
 {
-   printf("Version.\n");
+   printf("\nTesting pigpio C I/F\n");
 
    printf("pigpio version %d.\n", gpioVersion());
 
@@ -78,11 +78,12 @@ void t1()
    CHECK(1, 5, v, 0, 0, "read");
 
    gpioWrite(GPIO, PI_HIGH);
+   gpioDelay(1); /* 1 micro delay to let GPIO reach level reliably */
    v = gpioRead(GPIO);
    CHECK(1, 6, v, 1, 0, "write, read");
 }
 
-int t2_count=0;
+int t2_count;
 
 void t2cb(int gpio, int level, uint32_t tick)
 {
@@ -99,6 +100,8 @@ void t2()
    gpioSetPWMfrequency(GPIO, 0);
    f = gpioGetPWMfrequency(GPIO);
    CHECK(2, 1, f, 10, 0, "set PWM range, set/get PWM frequency");
+
+   t2_count=0;
 
    gpioSetAlertFunc(GPIO, t2cb);
 
@@ -155,12 +158,12 @@ void t2()
    gpioPWM(GPIO, 0);
 }
 
-int t3_val = USERDATA;
-int t3_reset=1;
-int t3_count=0;
-uint32_t t3_tick=0;
-float t3_on=0.0;
-float t3_off=0.0;
+int t3_val;
+int t3_reset;
+int t3_count;
+uint32_t t3_tick;
+float t3_on;
+float t3_off;
 
 void t3cbf(int gpio, int level, uint32_t tick, void *userdata)
 {
@@ -216,6 +219,13 @@ void t3()
    int dc[4]={20, 40, 60, 80};
 
    printf("PWM/Servo pulse accuracy tests.\n");
+
+   t3_val = USERDATA;
+   t3_reset=1;
+   t3_count=0;
+   t3_tick=0;
+   t3_on=0.0;
+   t3_off=0.0;
 
    gpioSetAlertFuncEx(GPIO, t3cbf, &t3_val); /* test extended alert */
 
@@ -273,14 +283,12 @@ void t4()
    gpioSetPWMrange(GPIO, 100);
 
    h = gpioNotifyOpen();
-   e = gpioNotifyBegin(h, (1<<GPIO));
-   CHECK(4, 1, e, 0, 0, "notify open/begin");
-
-   time_sleep(1);
 
    sprintf(p, "/dev/pigpio%d", h);
-
    f = open(p, O_RDONLY);
+
+   e = gpioNotifyBegin(h, (1<<GPIO));
+   CHECK(4, 1, e, 0, 0, "notify open/begin");
 
    gpioPWM(GPIO, 50);
    time_sleep(4);
@@ -327,7 +335,7 @@ void t4()
    CHECK(4, 6, n, 80, 10, "number of notifications");
 }
 
-int t5_count = 0;
+int t5_count;
 
 void t5cbf(int gpio, int level, uint32_t tick)
 {
@@ -369,6 +377,8 @@ To the lascivious pleasing of a lute.\n\
 
    printf("Waveforms & serial read/write tests.\n");
 
+   t5_count = 0;
+
    gpioSetAlertFunc(GPIO, t5cbf);
 
    gpioSetMode(GPIO, PI_OUTPUT);
@@ -381,7 +391,8 @@ To the lascivious pleasing of a lute.\n\
 
    wid = gpioWaveCreate();
    e = gpioWaveTxSend(wid, PI_WAVE_MODE_REPEAT);
-   CHECK(5, 3, e, 9, 0, "wave tx repeat");
+   if (e < 14) CHECK(5, 3, e,  9, 0, "wave tx repeat");
+   else        CHECK(5, 3, e, 19, 0, "wave tx repeat");
 
    oc = t5_count;
    time_sleep(5);
@@ -402,7 +413,8 @@ To the lascivious pleasing of a lute.\n\
 
    wid = gpioWaveCreate();
    e = gpioWaveTxSend(wid, PI_WAVE_MODE_ONE_SHOT);
-   CHECK(5, 8, e, 6811, 0, "wave tx start");
+   if (e < 6964) CHECK(5, 8, e, 6811, 0, "wave tx start");
+   else          CHECK(5, 8, e, 7116, 0, "wave tx start");
 
    CHECK(5, 9, 0, 0, 0, "NOT APPLICABLE");
 
@@ -436,18 +448,20 @@ To the lascivious pleasing of a lute.\n\
    CHECK(5, 18, c, 12000, 0, "wave get max pulses");
 
    c = gpioWaveGetCbs();
-   CHECK(5, 19, c, 6810, 0, "wave get cbs");
+   if (e < 6963) CHECK(5, 19, c, 6810, 0, "wave get cbs");
+   else          CHECK(5, 19, c, 7115, 0, "wave get cbs");
 
    c = gpioWaveGetHighCbs();
-   CHECK(5, 20, c, 6810, 0, "wave get high cbs");
+   if (e < 6963) CHECK(5, 20, c, 6810, 0, "wave get high cbs");
+   else          CHECK(5, 20, c, 7115, 0, "wave get high cbs");
 
    c = gpioWaveGetMaxCbs();
    CHECK(5, 21, c, 25016, 0, "wave get max cbs");
 }
 
-int t6_count=0;
-int t6_on=0;
-uint32_t t6_on_tick=0;
+int t6_count;
+int t6_on;
+uint32_t t6_on_tick;
 
 void t6cbf(int gpio, int level, uint32_t tick)
 {
@@ -472,6 +486,10 @@ void t6()
 
    tp = 0;
 
+   t6_count=0;
+   t6_on=0;
+   t6_on_tick=0;
+
    gpioSetAlertFunc(GPIO, t6cbf);
 
    for (t=0; t<5; t++)
@@ -489,7 +507,7 @@ void t6()
    CHECK(6, 2, t6_on, tp, 25, "gpio trigger pulse length");
 }
 
-int t7_count=0;
+int t7_count;
 
 void t7cbf(int gpio, int level, uint32_t tick)
 {
@@ -502,15 +520,17 @@ void t7()
 
    printf("Watchdog tests.\n");
 
+   t7_count=0;
+
    /* type of edge shouldn't matter for watchdogs */
    gpioSetAlertFunc(GPIO, t7cbf);
 
-   gpioSetWatchdog(GPIO, 10); /* 10 ms, 100 per second */
+   gpioSetWatchdog(GPIO, 50); /* 50 ms, 20 per second */
    time_sleep(0.5);
    oc = t7_count;
    time_sleep(2);
    c = t7_count - oc;
-   CHECK(7, 1, c, 200, 1, "set watchdog on count");
+   CHECK(7, 1, c, 39, 5, "set watchdog on count");
 
    gpioSetWatchdog(GPIO, 0); /* 0 switches watchdog off */
    time_sleep(0.5);
@@ -559,7 +579,7 @@ void t8()
    CHECK(8, 9, 0, 0, 0, "NOT APPLICABLE");
 }
 
-int t9_count = 0;
+int t9_count;
 
 void t9cbf(int gpio, int level, uint32_t tick)
 {
@@ -589,6 +609,8 @@ void t9()
    printf("Script store/run/status/stop/delete tests.\n");
 
    gpioWrite(GPIO, 0); /* need known state */
+
+   t9_count = 0;
 
    gpioSetAlertFunc(GPIO, t9cbf);
 
@@ -835,7 +857,7 @@ int main(int argc, char *argv[])
 {
    int i, t, c, status;
 
-   char test[64];
+   char test[64]={0,};
 
    if (argc > 1)
    {

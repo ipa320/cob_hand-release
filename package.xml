@@ -1,6 +1,6 @@
 <package format="2">
   <name>cob_hand</name>
-  <version>0.6.4</version>
+  <version>0.6.5</version>
   <description>The cob_hand stack includes packages that provide access to the Care-O-bot hand through ROS serial.</description>
 
   <license>Apache 2.0</license>

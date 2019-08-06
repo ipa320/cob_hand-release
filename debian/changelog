@@ -1,0 +1,45 @@
+ros-melodic-cob-hand (0.6.6-1stretch) stretch; urgency=high
+
+
+
+ -- Felix Messmer <felixmessmer@gmail.com>  Mon, 05 Aug 2019 22:00:00 -0000
+
+ros-melodic-cob-hand (0.6.5-1stretch) stretch; urgency=high
+
+
+
+ -- Felix Messmer <felixmessmer@gmail.com>  Sat, 21 Jul 2018 22:00:00 -0000
+
+ros-melodic-cob-hand (0.6.4-1stretch) stretch; urgency=high
+
+  * update maintainer
+  * Contributors: fmessmer
+
+ -- Felix Messmer <felixmessmer@gmail.com>  Fri, 20 Jul 2018 22:00:00 -0000
+
+ros-melodic-cob-hand (0.6.3-1stretch) stretch; urgency=high
+
+  * Merge pull request #19 <https://github.com/ipa320/cob_hand/issues/19> from ipa320/indigo_release_candidate
+    Indigo release candidate
+  * Merge pull request #17 <https://github.com/ipa320/cob_hand/issues/17> from ipa-fxm/APACHE_license
+    use license apache 2.0
+  * change maintainer
+  * use license apache 2.0
+  * Contributors: Felix Messmer, ipa-fxm, ipa-uhr-mk
+
+ -- Felix Messmer <felixmessmer@gmail.com>  Sat, 06 Jan 2018 23:00:00 -0000
+
+ros-melodic-cob-hand (0.6.2-1stretch) stretch; urgency=high
+
+
+
+ -- Felix Messmer <felixmessmer@gmail.com>  Mon, 17 Jul 2017 22:00:00 -0000
+
+ros-melodic-cob-hand (0.6.1-1stretch) stretch; urgency=high
+
+  * add meta package
+  * Contributors: Florian Weisshardt
+
+ -- Felix Messmer <felixmessmer@gmail.com>  Sun, 09 Oct 2016 22:00:00 -0000
+
+

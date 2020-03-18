@@ -1,0 +1,12 @@
+Source: ros-melodic-cob-hand-bridge
+Section: misc
+Priority: optional
+Maintainer: Felix Messmer <felixmessmer@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), ros-melodic-actionlib, ros-melodic-angles, ros-melodic-catkin, ros-melodic-control-msgs, ros-melodic-diagnostic-updater, ros-melodic-message-generation, ros-melodic-sensor-msgs, ros-melodic-std-srvs
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-melodic-cob-hand-bridge
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-melodic-actionlib, ros-melodic-angles, ros-melodic-control-msgs, ros-melodic-diagnostic-updater, ros-melodic-message-runtime, ros-melodic-rosserial-python, ros-melodic-sensor-msgs, ros-melodic-std-msgs, ros-melodic-std-srvs
+Description: The cob_hand_bridge package provides a driver for the gripper of Care-O-bot4.

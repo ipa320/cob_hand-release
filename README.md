@@ -1,40 +1,20 @@
-# Raspberry (1 or 2) setup
+cob_hand
+===========
 
-1. `sudo apt-get install git cmake g++ libboost-thread-dev`
-2. `git clone --recursive https://github.com/ipa320/cob_hand.git`
-3. `mkdir cob_hand/cob_hand_bridge/client/build`
-4. `cd cob_hand/cob_hand_bridge/client/build`
-5. `cmake ..`
-6. `make`
-7. `make install` *(OPTIONAL)*
+## ROS Distro Support
 
-# Raspberry usage
+|         | Indigo | Jade | Kinetic | Melodic |
+|:-------:|:------:|:----:|:-------:|:-------:|
+| Branch  | [`indigo_dev`](https://github.com/ipa320/cob_hand/tree/indigo_dev) | [`indigo_dev`](https://github.com/ipa320/cob_hand/tree/indigo_dev) | [`indigo_dev`](https://github.com/ipa320/cob_hand/tree/indigo_dev) |[`indigo_dev`](https://github.com/ipa320/cob_hand/tree/indigo_dev) |
+| Status  |  supported | not supported | supported | supported |
+| Version | [version](http://repositories.ros.org/status_page/ros_indigo_default.html?q=cob_hand) | [version](http://repositories.ros.org/status_page/ros_jade_default.html?q=cob_hand) | [version](http://repositories.ros.org/status_page/ros_kinetic_default.html?q=cob_hand) |[version](http://repositories.ros.org/status_page/ros_melodic_default.html?q=cob_hand) |
 
-`cob_hand_bridge */dev/ttyToROS[@baudrate]* [looprate (default: 20Hz)]`
+## Travis - Continuous Integration
 
-# Maintenance
-## update ros_lib (on a ROS PC)
-1. `cd cob_hand/cob_hand_bridge/client/`
-2. `python make_library.py`
+Status: [![Build Status](https://travis-ci.org/ipa320/cob_hand.svg?branch=indigo_dev)](https://travis-ci.org/ipa320/cob_hand)
 
-# ROS usage
-Overlay for rosserial: `git clone https://github.com/ipa-mdl/rosserial.git -b indigo-devel`
+## ROS Buildfarm
 
-Run `roslaunch cob_hand_bridge serial_bridge.launch port:=*/dev/ttyToRasp* [baud:=...]`
-
-Publications:                                                                                                                                                                                                                                                                  
- * /cob_hand_bridge/status [cob_hand_bridge/Status]
-
-Subscriptions: 
- * /cob_hand_bridge/set_pin [std_msgs/UInt8]: set single pin
- * /cob_hand_bridge/clear_pin [std_msgs/UInt8]: clear single pin
- * /cob_hand_bridge/command [cob_hand_bridge/JointValues]: motor command 
-
-Services: 
- * /cob_hand_bridge/set_pwm [cob_hand_bridge/SetPWM]: set pwm output for multiple pins
- * /cob_hand_bridge/init_finger [cob_hand_bridge/InitFinger]: init SDHx
- * /cob_hand_bridge/halt [std_srvs/Trigger]: stop motor motion
- * /cob_hand_bridge/init_pins [cob_hand_bridge/InitPins]: set direction of pins, especially output/pwm pins
- * /cob_hand_bridge/update_pins [cob_hand_bridge/UpdatePins]: set and clear multiple ourput pins
-
-
+|         | Indigo Source | Indigo Debian | Jade Source | Jade Debian | Kinetic Source | Kinetic Debian | Melodic Source | Melodic Debian |
+|:-------:|:-------------:|:-------------:|:-----------:|:-----------:|:--------------:|:--------------:|:--------------:|:--------------:|
+| cob_hand | [![not released](http://build.ros.org/buildStatus/icon?job=Isrc_uT__cob_hand__ubuntu_trusty__source)](http://build.ros.org/view/Isrc_uT/job/Isrc_uT__cob_hand__ubuntu_trusty__source/) | [![not released](http://build.ros.org/buildStatus/icon?job=Ibin_uT64__cob_hand__ubuntu_trusty_amd64__binary)](http://build.ros.org/view/Ibin_uT64/job/Ibin_uT64__cob_hand__ubuntu_trusty_amd64__binary/) | [![not released](http://build.ros.org/buildStatus/icon?job=Jsrc_uT__cob_hand__ubuntu_trusty__source)](http://build.ros.org/view/Jsrc_uT/job/Jsrc_uT__cob_hand__ubuntu_trusty__source/) | [![not released](http://build.ros.org/buildStatus/icon?job=Jbin_uT64__cob_hand__ubuntu_trusty_amd64__binary)](http://build.ros.org/view/Jbin_uT64/job/Jbin_uT64__cob_hand__ubuntu_trusty_amd64__binary/) | [![not released](http://build.ros.org/buildStatus/icon?job=Ksrc_uX__cob_hand__ubuntu_xenial__source)](http://build.ros.org/view/Ksrc_uX/job/Ksrc_uX__cob_hand__ubuntu_xenial__source/) | [![not released](http://build.ros.org/buildStatus/icon?job=Kbin_uX64__cob_hand__ubuntu_xenial_amd64__binary)](http://build.ros.org/view/Kbin_uX64/job/Kbin_uX64__cob_hand__ubuntu_xenial_amd64__binary/) | [![not released](http://build.ros.org/buildStatus/icon?job=Msrc_uB__cob_hand__ubuntu_bionic__source)](http://build.ros.org/view/Msrc_uB/job/Msrc_uB__cob_hand__ubuntu_bionic__source/) | [![not released](http://build.ros.org/buildStatus/icon?job=Mbin_uB64__cob_hand__ubuntu_bionic_amd64__binary)](http://build.ros.org/view/Mbin_uB64/job/Mbin_uB64__cob_hand__ubuntu_bionic_amd64__binary/) |

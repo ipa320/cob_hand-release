@@ -2,6 +2,16 @@
 Changelog for package cob_hand_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.7 (2020-03-18)
+------------------
+* Merge pull request `#26 <https://github.com/ipa320/cob_hand/issues/26>`_ from fmessmer/ci_updates
+  [travis] ci updates
+* catkin_lint fixes
+* Merge pull request `#25 <https://github.com/ipa320/cob_hand/issues/25>`_ from fmessmer/suppress_warnings
+  add -Wno-* compile option to suppress warnings
+* add -Wno compile option to suppress warnings
+* Contributors: Felix Messmer, fmessmer
+
 0.6.6 (2019-08-06)
 ------------------
 

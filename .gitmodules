@@ -1,0 +1,3 @@
+[submodule "cob_hand_bridge/client/pigpio"]
+	path = cob_hand_bridge/client/pigpio
+	url = https://github.com/joan2937/pigpio.git

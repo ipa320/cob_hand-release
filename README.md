@@ -1,3 +1,28 @@
+## cob_hand (kinetic) - 0.6.9-1
+
+The packages in the `cob_hand` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release cob_hand --rosdistro kinetic` on `Sat, 17 Oct 2020 15:19:05 -0000`
+
+These packages were released:
+- `cob_hand`
+- `cob_hand_bridge`
+
+Version of package(s) in repository `cob_hand`:
+
+- upstream repository: https://github.com/ipa320/cob_hand.git
+- release repository: https://github.com/ipa320/cob_hand-release.git
+- rosdistro version: `0.6.8-1`
+- old version: `0.6.8-1`
+- new version: `0.6.9-1`
+
+Versions of tools used:
+
+- bloom version: `0.10.0`
+- catkin_pkg version: `0.4.23`
+- rosdep version: `0.19.0`
+- rosdistro version: `0.8.3`
+- vcstools version: `0.1.42`
+
+
 ## cob_hand (melodic) - 0.6.8-1
 
 The packages in the `cob_hand` repository were released into the `melodic` distro by running `/usr/bin/bloom-release cob_hand --rosdistro melodic` on `Wed, 25 Mar 2020 10:27:22 -0000`

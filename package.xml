@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>cob_hand_bridge</name>
-  <version>0.6.8</version>
+  <version>0.6.9</version>
   <description>The cob_hand_bridge package provides a driver for the gripper of Care-O-bot4.</description>
 
   <maintainer email="felixmessmer@gmail.com">Felix Messmer</maintainer>

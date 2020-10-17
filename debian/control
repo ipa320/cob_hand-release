@@ -1,0 +1,12 @@
+Source: ros-noetic-cob-hand-bridge
+Section: misc
+Priority: optional
+Maintainer: Felix Messmer <felixmessmer@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-actionlib, ros-noetic-angles, ros-noetic-catkin, ros-noetic-control-msgs, ros-noetic-diagnostic-updater, ros-noetic-message-generation, ros-noetic-sensor-msgs, ros-noetic-std-srvs
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-noetic-cob-hand-bridge
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-actionlib, ros-noetic-angles, ros-noetic-control-msgs, ros-noetic-diagnostic-updater, ros-noetic-message-runtime, ros-noetic-rosserial-python, ros-noetic-sensor-msgs, ros-noetic-std-msgs, ros-noetic-std-srvs
+Description: The cob_hand_bridge package provides a driver for the gripper of Care-O-bot4.

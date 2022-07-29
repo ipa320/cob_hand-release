@@ -8,12 +8,9 @@ notifications:
     on_failure: always
 env:
   global:
-    - ADDITIONAL_DEBS='apt-utils dialog curl wget'
+    - ADDITIONAL_DEBS='apt-utils curl dialog wget'
     - CMAKE_ARGS=-DCMAKE_BUILD_TYPE=Release
-    - NOT_TEST_DOWNSTREAM=true
-    - ROS_REPO=ros
-    - VERBOSE_OUTPUT=false
-    - VERBOSE_TESTS=false
+    - ROS_REPO=main
   matrix:
     - ROS_DISTRO=kinetic
     - ROS_DISTRO=melodic

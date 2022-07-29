@@ -1,0 +1,12 @@
+Source: ros-noetic-cob-hand
+Section: misc
+Priority: optional
+Maintainer: Felix Messmer <felixmessmer@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin
+Homepage: http://ros.org/wiki/cob_hand
+Standards-Version: 3.9.2
+
+Package: ros-noetic-cob-hand
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-noetic-cob-hand-bridge
+Description: The cob_hand stack includes packages that provide access to the Care-O-bot hand through ROS serial.

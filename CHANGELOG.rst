@@ -2,6 +2,9 @@
 Changelog for package cob_hand
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.10 (2022-07-29)
+-------------------
+
 0.6.9 (2020-10-17)
 ------------------
 * Merge pull request `#27 <https://github.com/ipa320/cob_hand/issues/27>`_ from fmessmer/test_noetic

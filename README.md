@@ -1,3 +1,28 @@
+## cob_hand (noetic) - 0.6.11-1
+
+The packages in the `cob_hand` repository were released into the `noetic` distro by running `/usr/bin/bloom-release -r noetic -t noetic cob_hand` on `Mon, 19 Feb 2024 17:02:17 -0000`
+
+These packages were released:
+- `cob_hand`
+- `cob_hand_bridge`
+
+Version of package(s) in repository `cob_hand`:
+
+- upstream repository: https://github.com/ipa320/cob_hand.git
+- release repository: https://github.com/ipa320/cob_hand-release.git
+- rosdistro version: `0.6.10-1`
+- old version: `0.6.10-1`
+- new version: `0.6.11-1`
+
+Versions of tools used:
+
+- bloom version: `0.11.2`
+- catkin_pkg version: `1.0.0`
+- rosdep version: `0.22.2`
+- rosdistro version: `0.9.0`
+- vcstools version: `0.1.42`
+
+
 ## cob_hand (noetic) - 0.6.10-1
 
 The packages in the `cob_hand` repository were released into the `noetic` distro by running `/usr/bin/bloom-release cob_hand --rosdistro noetic` on `Fri, 29 Jul 2022 13:56:23 -0000`
